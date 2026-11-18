@@ -53,7 +53,6 @@
     }
 
     .reveal-delay-1 { transition-delay: 0.12s; }
-    .reveal-delay-2 { transition-delay: 0.24s; }
 
     .media-frame {
       position: relative;
@@ -62,6 +61,8 @@
 
     .media-frame img,
     .media-frame video {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -156,7 +157,7 @@
               </a>
             </div>
 
-            <!-- 3-Column Balanced Pillars Strip (Product & UX centered) -->
+            <!-- 3-Column Balanced Pillars Strip -->
             <div class="mt-12 pt-7 border-t border-ink/10 grid grid-cols-3 gap-4 max-w-xl items-start">
               <div class="text-left">
                 <p class="font-serif text-lg sm:text-xl font-semibold text-ink">ISEP &amp; Berkeley</p>
@@ -176,7 +177,7 @@
           <!-- Right Arch Portrait Frame -->
           <div class="lg:col-span-5 flex justify-center lg:justify-end reveal reveal-delay-1">
             <div class="media-frame w-full max-w-[360px] h-[480px] sm:h-[520px] rounded-t-full rounded-b-3xl bg-creamDark border border-ink/10 shadow-xl">
-              <img src="Profil.jpg" alt="Paule Rochette Portrait" class="object-center" />
+              <img src="Profil.JPG" alt="Paule Rochette Portrait" class="object-center" />
             </div>
           </div>
         </div>
@@ -184,7 +185,7 @@
     </section>
 
     <!-- =====================================================================
-         INDUSTRY & ACADEMIC TRACK RECORD STRIP
+         SECTION 1B: INDUSTRY & ACADEMIC TRACK RECORD
     ===================================================================== -->
     <section id="experience" class="py-16 bg-creamDark/60 border-y border-ink/8">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
@@ -194,7 +195,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
-          <!-- Air France -->
           <div class="rounded-2xl bg-cream p-6 border border-ink/8 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
@@ -213,7 +213,6 @@
             </div>
           </div>
 
-          <!-- UC Berkeley Haas & ISEP -->
           <div class="rounded-2xl bg-cream p-6 border border-ink/8 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
@@ -232,7 +231,6 @@
             </div>
           </div>
 
-          <!-- MLC Design & Université Laval -->
           <div class="rounded-2xl bg-cream p-6 border border-ink/8 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
@@ -265,7 +263,6 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <!-- Left Browser Mockup Frame -->
           <div class="lg:col-span-7 reveal">
             <div class="rounded-2xl bg-white border border-ink/10 shadow-xl overflow-hidden">
               <div class="h-9 bg-creamDark/80 border-b border-ink/10 px-4 flex items-center justify-between">
@@ -286,7 +283,6 @@
             </div>
           </div>
 
-          <!-- Right Project Story -->
           <div class="lg:col-span-5 reveal reveal-delay-1">
             <span class="inline-block px-3.5 py-1 rounded-full bg-terracotta/12 text-terracotta text-xs font-semibold uppercase tracking-wider mb-4">
               UC Berkeley • Product &amp; AI Systems
@@ -335,7 +331,6 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <!-- Left Narrative Column -->
           <div class="lg:col-span-5 reveal">
             <span class="inline-block px-3.5 py-1 rounded-full bg-white/10 text-terracotta text-xs font-semibold uppercase tracking-wider mb-4">
               Digital Product &amp; Inclusive UX
@@ -371,22 +366,19 @@
             </a>
           </div>
 
-          <!-- Right Cascading 3 Screens Composition -->
           <div class="lg:col-span-7 reveal reveal-delay-1">
             <div class="relative min-h-[420px] sm:min-h-[470px] flex flex-col justify-center">
-              <!-- Main Top-Right Screen -->
               <div class="media-frame w-full sm:w-[86%] sm:ml-auto aspect-[16/10] rounded-2xl bg-navyCard border border-white/15 shadow-2xl">
-                <img src="CapTivant-Home.jpg" alt="Cap'Tivant Homepage" />
+                <img src="CapTivant-Home.png" alt="Cap'Tivant Homepage" />
               </div>
 
-              <!-- Two Overlapping Secondary Screens at Bottom -->
               <div class="grid grid-cols-2 gap-4 sm:gap-6 mt-4 sm:-mt-16 sm:w-[88%] relative z-10">
                 <div class="media-frame aspect-[16/10] rounded-xl bg-navyCard border border-white/20 shadow-2xl">
-                  <img src="CapTivant-Menu.jpg" alt="Cap'Tivant Menu" />
+                  <img src="CapTivant-Menu.png" alt="Cap'Tivant Menu" />
                 </div>
 
                 <div class="media-frame aspect-[16/10] rounded-xl bg-navyCard border border-white/20 shadow-2xl">
-                  <img src="CapTivant.jpg" alt="Cap'Tivant Boat Listing and Map" />
+                  <img src="CapTivant.png" alt="Cap'Tivant Boat Listing and Map" />
                 </div>
               </div>
             </div>
@@ -396,7 +388,7 @@
     </section>
 
     <!-- =====================================================================
-         SECTION 4: ENGINEERING & EMBEDDED SYSTEMS (Videos)
+         SECTION 4: ENGINEERING & EMBEDDED SYSTEMS (Uniform Video Heights)
     ===================================================================== -->
     <section id="engineering" class="relative py-24 sm:py-28 bg-cream">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
@@ -418,11 +410,11 @@
           <!-- Card 1: Boat Modeling & Automated Systems -->
           <article class="rounded-3xl bg-white border border-ink/8 p-6 sm:p-8 shadow-sm flex flex-col justify-between reveal">
             <div>
-              <div class="grid grid-cols-12 gap-3 mb-7">
-                <div class="media-frame col-span-7 aspect-[4/3] rounded-2xl bg-creamDark">
-                  <video src="Bateau.mov" autoplay loop muted playsinline controls></video>
+              <div class="grid grid-cols-2 gap-3 mb-7">
+                <div class="media-frame h-56 rounded-2xl bg-creamDark">
+                  <video src="Bateau.mp4" autoplay loop muted playsinline controls></video>
                 </div>
-                <div class="media-frame col-span-5 aspect-[4/3] sm:aspect-auto rounded-2xl bg-creamDark">
+                <div class="media-frame h-56 rounded-2xl bg-creamDark">
                   <video src="Moteur.mov" autoplay loop muted playsinline controls></video>
                 </div>
               </div>
@@ -447,11 +439,11 @@
           <!-- Card 2: Autonomous Sound-Detecting Mobile Robot -->
           <article class="rounded-3xl bg-white border border-ink/8 p-6 sm:p-8 shadow-sm flex flex-col justify-between reveal reveal-delay-1">
             <div>
-              <div class="grid grid-cols-12 gap-3 mb-7">
-                <div class="media-frame col-span-7 aspect-[4/3] rounded-2xl bg-creamDark">
+              <div class="grid grid-cols-2 gap-3 mb-7">
+                <div class="media-frame h-56 rounded-2xl bg-creamDark">
                   <video src="Robot.MOV" autoplay loop muted playsinline controls></video>
                 </div>
-                <div class="media-frame col-span-5 aspect-[4/3] sm:aspect-auto rounded-2xl bg-creamDark">
+                <div class="media-frame h-56 rounded-2xl bg-creamDark">
                   <video src="Bleutooth.MOV" autoplay loop muted playsinline controls></video>
                 </div>
               </div>
@@ -478,7 +470,7 @@
     </section>
 
     <!-- =====================================================================
-         SECTION 5: INTERIOR DESIGN & SPATIAL AESTHETICS
+         SECTION 5: INTERIOR DESIGN & SPATIAL AESTHETICS (Uniform 4:3 Framing)
     ===================================================================== -->
     <section id="design" class="relative py-24 sm:py-32 bg-creamDark/70 border-t border-ink/8">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
@@ -501,37 +493,29 @@
           </div>
         </div>
 
-        <!-- Asymmetric Editorial Gallery (4 Photos) -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 reveal reveal-delay-1">
-          <div class="md:col-span-7">
-            <div class="media-frame aspect-[4/3] rounded-3xl bg-cream border border-ink/10 shadow-md">
-              <img src="Leaving-room.jpg" alt="Parisian Dining Room with Fringed Chandelier and Forest Mural" />
-            </div>
+        <!-- Clean 2x2 Editorial Gallery (Uniform aspect-[4/3], no overflow) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal reveal-delay-1">
+          <div class="media-frame aspect-[4/3] rounded-3xl bg-cream border border-ink/10 shadow-md">
+            <img src="Leaving-room.png" alt="Parisian Dining Room with Fringed Chandelier and Forest Mural" />
           </div>
 
-          <div class="md:col-span-5">
-            <div class="media-frame aspect-[4/3] md:h-full rounded-3xl bg-cream border border-ink/10 shadow-md">
-              <img src="Salon.jpg" alt="Parisian Living Room with Lilac Sofa and Royal Blue Armchairs" />
-            </div>
+          <div class="media-frame aspect-[4/3] rounded-3xl bg-cream border border-ink/10 shadow-md">
+            <img src="Salon.png" alt="Parisian Living Room with Lilac Sofa and Royal Blue Armchairs" />
           </div>
 
-          <div class="md:col-span-5">
-            <div class="media-frame aspect-[4/3] rounded-3xl bg-cream border border-ink/10 shadow-md">
-              <img src="Lit.jpg" alt="Bespoke Navy Millwork Bedroom Suite" />
-            </div>
+          <div class="media-frame aspect-[4/3] rounded-3xl bg-cream border border-ink/10 shadow-md">
+            <img src="Lit.png" alt="Bespoke Navy Millwork Bedroom Suite" />
           </div>
 
-          <div class="md:col-span-7">
-            <div class="media-frame aspect-[4/3] rounded-3xl bg-cream border border-ink/10 shadow-md">
-              <img src="Canape.png" alt="Contemporary Living Space with Round Walnut Coffee Table" />
-            </div>
+          <div class="media-frame aspect-[4/3] rounded-3xl bg-cream border border-ink/10 shadow-md">
+            <img src="Canape.png" alt="Contemporary Living Space with Round Walnut Coffee Table" />
           </div>
         </div>
       </div>
     </section>
 
     <!-- =====================================================================
-         SECTION 6: ABOUT, SKILLS & CONTACT FOOTER
+         SECTION 6: ABOUT, SKILLS & CONTACT FOOTER (2x2 Matching Pill Buttons)
     ===================================================================== -->
     <footer id="contact" class="relative py-24 sm:py-28 bg-charcoalFooter text-cream">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
@@ -566,30 +550,30 @@
           <!-- Right Geometric Sketch Accent -->
           <div class="lg:col-span-4 flex justify-center lg:justify-end reveal reveal-delay-1">
             <div class="media-frame w-60 h-72 rounded-t-full rounded-b-2xl bg-white p-3 border border-white/15 shadow-2xl">
-              <img src="Dessin.jpg" alt="Architectural Geometric Line Study" class="object-contain bg-white rounded-t-full rounded-b-xl" />
+              <img src="Dessin.jpg" alt="Architectural Geometric Line Study" class="!object-contain !p-3 bg-white" />
             </div>
           </div>
         </div>
 
-        <!-- Bottom Contact Bar -->
-        <div class="pt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 reveal">
+        <!-- Bottom Contact Bar (2 buttons per row, matching outlined pill style) -->
+        <div class="pt-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 reveal">
           <div>
             <p class="font-serif text-2xl text-white">Let’s connect</p>
             <p class="text-sm text-cream/60 mt-1">Paris, France • Open to opportunities across Europe &amp; internationally</p>
           </div>
 
-          <div class="flex flex-wrap items-center gap-3 sm:gap-4">
-            <a href="mailto:paule.rochette2004@gmail.com" class="px-5 py-3 rounded-full bg-terracotta text-white text-sm font-medium hover:bg-terracottaDark transition-colors">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full lg:w-auto">
+            <a href="mailto:paule.rochette2004@gmail.com" class="px-6 py-3 rounded-full bg-terracotta text-white text-sm font-medium hover:bg-terracottaDark transition-colors text-center">
               paule.rochette2004@gmail.com
             </a>
-            <a href="tel:+33612015244" class="px-5 py-3 rounded-full bg-white/8 text-cream text-sm font-medium hover:bg-white/15 transition-colors">
+            <a href="tel:+33612015244" class="px-6 py-3 rounded-full border border-white/25 text-white text-sm font-medium hover:bg-white hover:text-charcoalFooter transition-colors text-center">
               +33 6 12 01 52 44
             </a>
-            <a href="https://github.com/Paule-rcht" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-full bg-white/8 text-cream text-sm font-medium hover:bg-white/15 transition-colors inline-flex items-center gap-1.5">
+            <a href="https://github.com/Paule-rcht" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full border border-white/25 text-white text-sm font-medium hover:bg-white hover:text-charcoalFooter transition-colors inline-flex items-center justify-center gap-1.5">
               <span>GitHub</span>
               <span aria-hidden="true">↗</span>
             </a>
-            <a href="https://www.linkedin.com/in/paule-rochette-0451332a8" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-full border border-white/20 text-white text-sm font-medium hover:bg-white hover:text-charcoalFooter transition-colors inline-flex items-center gap-1.5">
+            <a href="https://www.linkedin.com/in/paule-rochette-0451332a8" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full border border-white/25 text-white text-sm font-medium hover:bg-white hover:text-charcoalFooter transition-colors inline-flex items-center justify-center gap-1.5">
               <span>LinkedIn</span>
               <span aria-hidden="true">↗</span>
             </a>
@@ -630,6 +614,28 @@
       } else {
         navbar.classList.remove('shadow-sm');
       }
+    });
+
+    // Automatic case/extension fallback for GitHub Pages images
+    document.querySelectorAll('img').forEach(img => {
+      const orig = img.getAttribute('src');
+      if (!orig || orig.startsWith('http')) return;
+      const base = orig.replace(/\.[^.]+$/, '');
+      const candidates = [
+        base + '.JPG',
+        base + '.jpg',
+        base + '.jpeg',
+        base + '.PNG',
+        base + '.png',
+        base.toLowerCase() + '.jpg',
+        base.toLowerCase() + '.JPG'
+      ].filter(c => c !== orig);
+      let idx = 0;
+      img.addEventListener('error', () => {
+        if (idx < candidates.length) {
+          img.src = candidates[idx++];
+        }
+      });
     });
   </script>
 </body>

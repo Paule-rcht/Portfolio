@@ -533,13 +533,431 @@
               </h3>
               <ul class="space-y-2 text-sm text-muted leading-relaxed mb-6">
                 <li><strong class="text-ink">Hardware &amp; Custom PCB:</strong> compact mobile robot featuring a custom-designed PCB, acoustic sensors, and motor drivers.</li>
-                <li><strong class="text-ink">Acoustic Tracking &amp; Safety:</strong> C/C++ firmware on Tiva C Series for real-time frequency filtering, directional sound tracking, automatic obstacle stop, and Bluetooth telemetry.</li>
+                <!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paule Rochette — Engineering & Design Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F6F3EC',
+            creamDark: '#EDE8DC',
+            ink: '#1A1A1A',
+            muted: '#5C5852',
+            terracotta: '#D96B43',
+            terracottaDark: '#B8532F',
+            navyDeep: '#0F2537',
+            navyCard: '#16324A',
+            charcoalFooter: '#14181D'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"DM Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #F6F3EC;
+      color: #1A1A1A;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .media-frame {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .media-frame img,
+    .media-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Subtle architectural grid texture */
+    .blueprint-grid {
+      background-image: radial-gradient(rgba(26, 26, 26, 0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .blueprint-grid-dark {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-terracotta selection:text-white">
+
+  <!-- Sticky Minimalist Navigation Bar (Clean Published Version) -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md border-b border-ink/5">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="#home" class="font-serif text-lg sm:text-xl font-semibold tracking-tight text-ink flex items-center gap-2">
+        <span>Paule Rochette</span>
+        <span class="hidden md:inline-block text-xs font-sans font-normal uppercase tracking-widest text-muted border-l border-ink/15 pl-2.5">Portfolio</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
+        <a href="#home" class="hover:text-terracotta transition-colors">Home</a>
+        <a href="#homebites" class="hover:text-terracotta transition-colors">HomeBites</a>
+        <a href="#captivant" class="hover:text-terracotta transition-colors">Cap’Tivant</a>
+        <a href="#engineering" class="hover:text-terracotta transition-colors">Engineering</a>
+        <a href="#design" class="hover:text-terracotta transition-colors">Interior Design</a>
+        <a href="#contact" class="px-4 py-2 rounded-full bg-ink text-cream text-xs uppercase tracking-wider hover:bg-terracotta transition-colors">Contact</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden p-2.5 rounded-xl text-ink hover:bg-ink/5 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-cream border-b border-ink/10 px-6 py-4 space-y-3 text-sm font-medium">
+      <a href="#home" class="block py-1.5 text-ink hover:text-terracotta">Home</a>
+      <a href="#homebites" class="block py-1.5 text-ink hover:text-terracotta">HomeBites</a>
+      <a href="#captivant" class="block py-1.5 text-ink hover:text-terracotta">Cap’Tivant</a>
+      <a href="#engineering" class="block py-1.5 text-ink hover:text-terracotta">Engineering</a>
+      <a href="#design" class="block py-1.5 text-ink hover:text-terracotta">Interior Design</a>
+      <a href="#contact" class="block py-1.5 text-terracotta font-semibold">About &amp; Contact</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =====================================================================
+         SECTION 1: HERO
+    ===================================================================== -->
+    <section id="home" class="relative pt-28 pb-20 sm:pt-36 sm:pb-28 bg-cream">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          <!-- Left Editorial Column -->
+          <div class="lg:col-span-7 reveal">
+            <p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-terracotta mb-4">
+              Engineering, Product &amp; Design Portfolio
+            </p>
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-[64px] leading-[1.08] font-medium text-ink tracking-tight mb-5">
+              Paule <span class="italic font-normal">Rochette</span>
+            </h1>
+            <p class="text-base sm:text-lg font-medium text-ink/90 mb-5">
+              MSc Engineering &amp; Business — 6-Month Internship (Jan. 2027) <span class="text-terracotta mx-1.5">•</span> ISEP Paris, UC Berkeley Haas &amp; Univ. Laval
+            </p>
+            <p class="text-base sm:text-lg text-muted leading-relaxed max-w-xl mb-8">
+              Bridging AI systems, high-performance engineering, product strategy, and spatial aesthetics: I build fault-tolerant data pipelines, user-centric web platforms, autonomous embedded systems, and tailored design projects from discovery to execution.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center gap-3.5">
+              <a href="#homebites" class="px-6 py-3.5 rounded-full bg-ink text-cream text-sm font-medium hover:bg-terracotta transition-all shadow-sm">
+                Explore my projects ↓
+              </a>
+              <a href="https://www.linkedin.com/in/paule-rochette-0451332a8" target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 rounded-full border border-ink/20 text-ink text-sm font-medium hover:border-ink hover:bg-ink/5 transition-all inline-flex items-center gap-2">
+                <span>LinkedIn</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <a href="https://github.com/Paule-rcht" target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 rounded-full border border-ink/20 text-ink text-sm font-medium hover:border-ink hover:bg-ink/5 transition-all inline-flex items-center gap-2">
+                <span>GitHub</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <!-- Balanced 3-Column Highlights Strip ("Product & UX" perfectly centered) -->
+            <div class="mt-12 pt-7 border-t border-ink/10 grid grid-cols-3 gap-6 max-w-xl items-start">
+              <div class="text-left">
+                <p class="font-serif text-lg sm:text-xl font-semibold text-ink">AI, HPC &amp; Data</p>
+                <p class="text-xs text-muted mt-1">Python, PyTorch, C++ &amp; Pipelines</p>
+              </div>
+              <div class="text-center border-x border-ink/10 px-2">
+                <p class="font-serif text-lg sm:text-xl font-semibold text-ink">Product &amp; UX</p>
+                <p class="text-xs text-muted mt-1">Strategy, Research &amp; Web</p>
+              </div>
+              <div class="text-right">
+                <p class="font-serif text-lg sm:text-xl font-semibold text-ink">Hardware &amp; Space</p>
+                <p class="text-xs text-muted mt-1">Embedded &amp; Architecture</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Arch Portrait Frame -->
+          <div class="lg:col-span-5 flex justify-center lg:justify-end reveal">
+            <div class="media-frame w-full max-w-[360px] h-[470px] sm:h-[510px] rounded-t-full rounded-b-3xl bg-creamDark border border-ink/10 shadow-xl">
+              <img src="Profil.jpg" alt="Paule Rochette Portrait" class="w-full h-full object-cover object-center" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 2: HOMEBITES & AIR FRANCE DATA SYSTEMS
+    ===================================================================== -->
+    <section id="homebites" class="relative py-20 sm:py-28 bg-cream">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="flex items-center gap-4 mb-12 reveal">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted">01 / Featured Product, AI Guardrails &amp; Full-Stack</span>
+          <div class="h-px bg-ink/10 flex-1"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Left Browser Mockup Frame -->
+          <div class="lg:col-span-7 reveal">
+            <div class="rounded-2xl bg-white border border-ink/10 shadow-xl overflow-hidden">
+              <div class="h-9 bg-creamDark/80 border-b border-ink/10 px-4 flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-terracotta/70"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-400/70"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/70"></span>
+                </div>
+                <div class="px-3 py-0.5 rounded-md bg-white/80 text-[11px] font-mono text-muted truncate max-w-[240px]">
+                  food-from-home-mu.vercel.app
+                </div>
+                <div class="w-8"></div>
+              </div>
+              <div class="media-frame aspect-[16/10] w-full bg-creamDark/40">
+                <img src="https://lh3.googleusercontent.com/gg-dl/AHiVA1ndUaMDbdfDudz4uPtgzdokSdvvgoYhtAXgPH2qESMuxdv3RTBCBE86IqmESJ9YTFNXajOUB7X6_QK2-5euH3qevebxW0EhWfK8ph0jylvQ__G7mdmggWFD0I8-OfwjSMdw4xrEvT4k75ynjokgQL-BmnGDC7DnQCbqG4qzB3epBTCiuw=s0" alt="HomeBites Marketplace Interface" class="w-full h-full object-cover object-top" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Project Story -->
+          <div class="lg:col-span-5 reveal">
+            <span class="inline-block px-3.5 py-1 rounded-full bg-terracotta/12 text-terracotta text-xs font-semibold uppercase tracking-wider mb-4">
+              Product Management, AI Guardrails &amp; Full-Stack
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium text-ink leading-tight mb-4">
+              HomeBites — <span class="italic font-normal">Food From Home</span>
+            </h2>
+            <p class="text-muted text-base leading-relaxed mb-5">
+              Architected and deployed at <strong class="text-ink">UC Berkeley Haas</strong>: an end-to-end peer-to-peer meal marketplace connecting local home cooks with guests, built from user discovery to MVP launch.
+            </p>
+            <ul class="space-y-2.5 text-sm text-ink/85 mb-6">
+              <li class="flex items-start gap-2.5">
+                <span class="text-terracotta font-bold mt-0.5">•</span>
+                <span><strong>Deterministic Evaluation &amp; LLM Guardrails:</strong> implemented strict safety and validation rules (R1–R14, G1–G7) isolating verifiable constraints from AI matching workflows.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-terracotta font-bold mt-0.5">•</span>
+                <span><strong>Product Architecture &amp; GTM:</strong> led two-sided user research, quantitative risk testing, relational SQL database design, waitlist logic, and Vercel deployment.</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mb-7">
+              <span class="px-3 py-1 rounded-full bg-creamDark text-ink/80 text-xs font-medium">Product Strategy</span>
+              <span class="px-3 py-1 rounded-full bg-creamDark text-ink/80 text-xs font-medium">LLM Guardrails</span>
+              <span class="px-3 py-1 rounded-full bg-creamDark text-ink/80 text-xs font-medium">SQL &amp; Full-Stack</span>
+              <span class="px-3 py-1 rounded-full bg-creamDark text-ink/80 text-xs font-medium">User Research</span>
+            </div>
+
+            <a href="https://food-from-home-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-terracotta text-white text-sm font-medium hover:bg-terracottaDark transition-all shadow-sm">
+              <span>Test Live Application</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Industrial & Data Engineering Highlight Strip (Air France + MLC Design Operations) -->
+        <div class="mt-20 pt-14 border-t border-ink/10 reveal">
+          <p class="text-xs font-mono uppercase tracking-widest text-terracotta mb-6">Industry Experience &amp; Quantitative Operations</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 sm:p-7 rounded-3xl bg-white border border-ink/8 shadow-sm">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-terracotta">Air France • Roissy, France</span>
+                <span class="text-xs font-mono text-muted">08/2025 – 01/2026</span>
+              </div>
+              <h3 class="font-serif text-xl font-medium text-ink mb-2.5">Data Systems &amp; Operations Analyst (Ground Handling)</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Re-engineered and automated a fault-tolerant data ingestion pipeline across <strong class="text-ink">13 API streams and 16 operational KPIs</strong> for Groupe ADP compliance. Deployed real-time mobile telemetry across 8 aircraft turnaround milestones and led cross-functional technical alignment between IT, field operations, and external partners.
+              </p>
+            </div>
+
+            <div class="p-6 sm:p-7 rounded-3xl bg-white border border-ink/8 shadow-sm">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-xs font-semibold uppercase tracking-wider text-terracotta">MLC Design &amp; Groupe Bertrand • Paris</span>
+                <span class="text-xs font-mono text-muted">2021 – 2026</span>
+              </div>
+              <h3 class="font-serif text-xl font-medium text-ink mb-2.5">Project Coordination, Quantitative Controls &amp; Client Delivery</h3>
+              <p class="text-sm text-muted leading-relaxed">
+                Executed structural data profiling, budget variance analytics, and cost reconciliation across multi-client accounts at <strong class="text-ink">MLC Design</strong>, alongside high-tempo VIP private event logistics and multidisciplinary team coordination at <strong class="text-ink">Groupe Bertrand</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 3: CAP'TIVANT
+    ===================================================================== -->
+    <section id="captivant" class="relative py-24 sm:py-32 bg-navyDeep text-white overflow-hidden">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="flex items-center gap-4 mb-12 reveal">
+          <span class="text-xs font-mono uppercase tracking-widest text-white/60">02 / Speech Synthesis, Spatial Web &amp; Inclusive UX</span>
+          <div class="h-px bg-white/15 flex-1"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Left Narrative Column -->
+          <div class="lg:col-span-5 reveal">
+            <span class="inline-block px-3.5 py-1 rounded-full bg-white/10 text-terracotta text-xs font-semibold uppercase tracking-wider mb-4">
+              Multimodal Speech &amp; Spatial Web Application
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium text-white leading-tight mb-4">
+              Cap’Tivant — <span class="italic font-normal text-white/90">Luxury Boat Rental Platform</span>
+            </h2>
+            <p class="text-white/75 text-base leading-relaxed mb-6">
+              Responsive, bilingual web platform dedicated to yacht and sailboat rentals, engineered to deliver an inclusive, accessible, and immersive booking journey.
+            </p>
+
+            <ul class="space-y-3 text-sm text-white/85 mb-6">
+              <li class="flex items-start gap-2.5">
+                <span class="text-terracotta font-bold mt-0.5">•</span>
+                <span><strong>Bicultural UX &amp; Accessibility:</strong> instant EN/FR language toggle, dedicated high-contrast visual mode, and real-time bilingual voice synthesis for visually impaired users.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-terracotta font-bold mt-0.5">•</span>
+                <span><strong>Asynchronous API &amp; Spatial Mapping:</strong> integrated interactive marina mapping (Leaflet.js), hover-triggered Web Audio guidance, optimized state management, and booking workflows.</span>
+              </li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-medium">UX / UI Design</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-medium">JS ES6+</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-medium">Web Audio API</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-medium">Leaflet.js</span>
+            </div>
+
+            <a href="https://paule-rcht.github.io/CapTivant-Project/PageAccueil.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white text-navyDeep text-sm font-semibold hover:bg-terracotta hover:text-white transition-all shadow-md">
+              <span>Explore Platform</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <!-- Right Cascading 3 Screens Composition -->
+          <div class="lg:col-span-7 reveal">
+            <div class="relative min-h-[420px] sm:min-h-[470px] flex flex-col justify-center">
+              <!-- Main Top-Right Screen -->
+              <div class="media-frame w-full sm:w-[86%] sm:ml-auto aspect-[16/10] rounded-2xl bg-navyCard border border-white/15 shadow-2xl">
+                <img src="CapTivant-Home.jpg" alt="Cap'Tivant Homepage" />
+              </div>
+
+              <!-- Two Overlapping Secondary Screens -->
+              <div class="grid grid-cols-2 gap-4 sm:gap-6 mt-4 sm:-mt-16 sm:w-[88%] relative z-10">
+                <div class="media-frame aspect-[16/10] rounded-xl bg-navyCard border border-white/20 shadow-2xl">
+                  <img src="CapTivant-Menu.jpg" alt="Cap'Tivant Navigation Menu" />
+                </div>
+                <div class="media-frame aspect-[16/10] rounded-xl bg-navyCard border border-white/20 shadow-2xl">
+                  <img src="CapTivant.jpg" alt="Cap'Tivant Yacht Listing & Map" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 4: ENGINEERING, HPC & EMBEDDED SYSTEMS
+    ===================================================================== -->
+    <section id="engineering" class="relative py-24 sm:py-28 bg-cream">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="flex items-center gap-4 mb-6 reveal">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted">03 / C++ Optimization, Robotics &amp; Embedded AI</span>
+          <div class="h-px bg-ink/10 flex-1"></div>
+        </div>
+
+        <div class="max-w-2xl mb-12 reveal">
+          <h2 class="font-serif text-3xl sm:text-4xl font-medium text-ink mb-3">
+            Engineering &amp; <span class="italic font-normal">Embedded Systems</span>
+          </h2>
+          <p class="text-muted text-base">
+            From high-performance C++/PyTorch trajectory modeling and custom PCB robotics to real-time microcontroller control loops (ISEP Paris &amp; Université Laval).
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Card 1: Marine Navigation & Boat Modeling -->
+          <article class="rounded-3xl bg-white border border-ink/8 p-6 sm:p-8 shadow-sm flex flex-col justify-between reveal">
+            <div>
+              <div class="grid grid-cols-12 gap-3 mb-7">
+                <div class="media-frame col-span-7 aspect-[4/3] rounded-2xl bg-ink">
+                  <video src="Bateau.mov" autoplay loop muted playsinline controls></video>
+                </div>
+
+                <div class="media-frame col-span-5 aspect-[4/3] rounded-2xl bg-ink">
+                  <video src="Moteur.mov" autoplay loop muted playsinline controls></video>
+                </div>
+              </div>
+
+              <span class="text-xs font-semibold uppercase tracking-widest text-terracotta">C++ / PyTorch Optimization &amp; Mechatronics</span>
+              <h3 class="font-serif text-2xl font-medium text-ink mt-1.5 mb-3">
+                Marine Navigation &amp; Automated Sailboat Systems
+              </h3>
+              <ul class="space-y-2 text-sm text-muted leading-relaxed mb-6">
+                <li><strong class="text-ink">High-Performance C++ &amp; PyTorch:</strong> architected C++ kernels for real-time spatial pathfinding, optimized vector operations to reduce runtime latency, and integrated PyTorch modules for predictive trajectory risk evaluation.</li>
+                <li><strong class="text-ink">Naval Craftsmanship &amp; Automation:</strong> handcrafted oak hull with hand-sewn sails, paired with a dual-stepper motor capstan driven by Arduino and ULN2003 controllers automating sail-hoisting and LED navigation sequences.</li>
               </ul>
             </div>
 
             <div class="flex flex-wrap gap-2 pt-4 border-t border-ink/8">
-              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">C / C++</span>
-              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Tiva C Series</span>
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">C++ &amp; PyTorch</span>
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Arduino &amp; ULN2003</span>
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Trajectory Optimization</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Sound-Detecting Robot -->
+          <article class="rounded-3xl bg-white border border-ink/8 p-6 sm:p-8 shadow-sm flex flex-col justify-between reveal">
+            <div>
+              <div class="grid grid-cols-12 gap-3 mb-7">
+                <div class="media-frame col-span-7 aspect-[4/3] rounded-2xl bg-ink">
+                  <video src="Robot.MOV" autoplay loop muted playsinline controls></video>
+                </div>
+
+                <div class="media-frame col-span-5 aspect-[4/3] rounded-2xl bg-ink">
+                  <video src="Bleutooth.MOV" autoplay loop muted playsinline controls></video>
+                </div>
+              </div>
+
+              <span class="text-xs font-semibold uppercase tracking-widest text-terracotta">Embedded AI, Signal Processing &amp; Control Loops</span>
+              <h3 class="font-serif text-2xl font-medium text-ink mt-1.5 mb-3">
+                Autonomous Sound-Detecting Mobile Robot
+              </h3>
+              <ul class="space-y-2 text-sm text-muted leading-relaxed mb-6">
+                <li><strong class="text-ink">Robotics &amp; Time-Series Signal Processing:</strong> low-level C/C++ firmware on Tiva MCU with custom PCB for real-time acoustic profiling, noise filtering, memory optimization, directional sound tracking, and Bluetooth telemetry.</li>
+                <li><strong class="text-ink">Closed-Loop Thermal Control (Université Laval):</strong> programmed C/C++ microcontrollers for high-frequency sensor sampling and automated thermal regulation testing.</li>
+              </ul>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-ink/8">
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">C / C++ &amp; Memory Profiling</span>
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Tiva C MCU</span>
               <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Signal Processing</span>
               <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Bluetooth</span>
             </div>
@@ -549,61 +967,165 @@
     </section>
 
     <!-- =====================================================================
-         SECTION 5: INTERIOR DESIGN (Asymmetric 4-Frame Gallery on #F6F3EC)
+         SECTION 5: INTERIOR DESIGN
     ===================================================================== -->
     <section id="design" class="relative py-20 sm:py-28 bg-cream">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
         <div class="flex items-center gap-4 mb-10 reveal">
-          <span class="text-xs font-mono uppercase tracking-widest text-muted">04 / Architecture &amp; Spatial Aesthetics</span>
+          <span class="text-xs font-mono uppercase tracking-widest text-muted">04 / Architecture, Operations &amp; Spatial Aesthetics</span>
           <div class="h-px bg-ink/10 flex-1"></div>
-          <span class="canva-badge px-3 py-1 rounded-full bg-terracotta/15 text-terracotta text-xs font-mono">
-            CANVA SECTION 5 • 4-Photo Editorial Gallery (instead of 9 uniform thumbnails)
-          </span>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 reveal">
           <div class="lg:col-span-6">
-            <span class="text-xs font-semibold uppercase tracking-widest text-terracotta">Spatial Layout &amp; Project Coordination</span>
+            <span class="text-xs font-semibold uppercase tracking-widest text-terracotta">Spatial Layout &amp; Project Management</span>
             <h2 class="font-serif text-3xl sm:text-4xl font-medium text-ink mt-2">
               Luxury Interior Design — <span class="italic font-normal">Paris Île-de-France</span>
             </h2>
           </div>
           <div class="lg:col-span-6">
             <p class="text-muted text-sm sm:text-base leading-relaxed">
-              Moodboard curation, spatial planning, material specification, and photoshoot staging for high-end residential interiors. Coordinated suppliers, bespoke joinery detailing, client presentations, and financial tracking.
+              Moodboard curation, spatial planning, material specification, and photoshoot staging for high-end residential projects at MLC Design. Managed end-to-end supplier logistics, bespoke joinery detailing, client presentations, and budget reconciliation.
             </p>
           </div>
         </div>
 
         <!-- Asymmetric 4-Photo Editorial Gallery -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 reveal reveal-delay-1">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 reveal">
           <!-- Large Left Portrait Frame -->
-          <div class="photo-slot md:col-span-5 h-[380px] md:h-[480px] rounded-3xl bg-creamDark border border-ink/8 blueprint-grid flex flex-col items-center justify-center text-center p-6" data-slot-label="Interior Design — Main View (Living room or master suite)">
-            <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Parisian Interior 1" />
-            <div class="slot-placeholder">
-              <span class="text-xs font-mono uppercase tracking-widest text-terracotta">Featured Photo</span>
-              <p class="font-serif text-lg text-ink mt-1">Living Room or Master Suite</p>
-              <p class="text-xs text-muted mt-1 max-w-[200px]">Click to upload your signature vertical shot</p>
-            </div>
-            <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
-              <span class="px-4 py-2 rounded-full bg-white text-ink text-xs font-semibold shadow">Change photo</span>
-            </div>
+          <div class="media-frame md:col-span-5 h-[380px] md:h-[480px] rounded-3xl bg-creamDark border border-ink/8">
+            <img src="Leaving-room.jpg" alt="Parisian Dining Room & Custom Wallpaper" />
           </div>
 
           <!-- Right 3-Frame Mosaic -->
           <div class="md:col-span-7 flex flex-col gap-5">
             <!-- Top Wide Frame -->
-            <div class="photo-slot h-[230px] rounded-3xl bg-creamDark border border-ink/8 blueprint-grid flex flex-col items-center justify-center text-center p-6" data-slot-label="Interior Design — Kitchen or Dining Space">
-              <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Parisian Interior 2" />
-              <div class="slot-placeholder">
-                <span class="text-xs font-mono uppercase tracking-widest text-terracotta">Photo 2 • Landscape</span>
-                <p class="font-serif text-base text-ink mt-0.5">Custom Kitchen or Dining Space</p>
-              </div>
-              <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
-                <span class="px-4 py-2 rounded-full bg-white text-ink text-xs font-semibold shadow">Change photo</span>
-              </div>
+            <div class="media-frame h-[230px] rounded-3xl bg-creamDark border border-ink/8">
+              <img src="Salon.jpg" alt="Parisian Living Room Layout" />
             </div>
 
             <!-- Bottom Two Frames -->
             <div class="grid grid-cols-2 gap-5 flex-1">
-              <div class="photo-slot h-[230px] rounded-3xl bg-creamDark border border-ink/8 blueprint-grid flex flex-col items-center justify-center text-center p-4" data-slot-label="Interior Design
+              <div class="media-frame h-[230px] rounded-3xl bg-creamDark border border-ink/8">
+                <img src="Lit.jpg" alt="Bespoke Joinery & Master Bedroom" />
+              </div>
+              <div class="media-frame h-[230px] rounded-3xl bg-creamDark border border-ink/8">
+                <img src="Canape.jpg" alt="Contemporary Parisian Lounge" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 6: ABOUT & CONTACT
+    ===================================================================== -->
+    <footer id="contact" class="relative py-20 sm:py-28 bg-charcoalFooter text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Left Technical Sketch Slot -->
+          <div class="lg:col-span-4 reveal">
+            <div class="media-frame aspect-[3/4] max-w-[280px] mx-auto lg:mx-0 rounded-2xl bg-white border border-white/15 shadow-lg">
+              <img src="Dessin.jpg" alt="Geometric Architectural Line Drawing by Paule Rochette" class="w-full h-full object-cover" />
+            </div>
+          </div>
+
+          <!-- Right Synergy & Contact Info -->
+          <div class="lg:col-span-8 reveal">
+            <span class="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">About &amp; Multidisciplinary Synergy</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-medium text-white mt-2 mb-5">
+              AI Engineering, Business &amp; <span class="italic font-normal">Design Profile</span>
+            </h2>
+            <p class="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl mb-6">
+              Final-year MSc Engineering student at <strong class="text-white">ISEP Paris</strong> (AI, Systems &amp; Data Analytics) and Global Business graduate student at <strong class="text-white">UC Berkeley Haas</strong>, with exchange experience in robotics at <strong class="text-white">Université Laval</strong>. Combining technical rigor (Python, PyTorch, C++, CUDA, SQL) with product strategy and spatial aesthetics. An avid sailor and a <strong class="text-white">judo black belt</strong> (14 years of training, bringing discipline and composure under pressure).
+            </p>
+
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-terracotta/20 border border-terracotta/40 text-terracotta text-sm font-medium mb-10">
+              <span class="w-2 h-2 rounded-full bg-terracotta animate-pulse"></span>
+              <span>Available January 2027 (6-Month Final-Year Internship): AI &amp; Data Engineering, Product Management, Strategy &amp; Design</span>
+            </div>
+
+            <!-- Interactive Contact Grid (Paris, France only + GitHub + LinkedIn) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8 border-t border-white/10">
+              <button type="button" onclick="copyText('paule.rochette2004@gmail.com', this)" class="text-left p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group">
+                <span class="block text-xs uppercase tracking-wider text-white/50">Email (click to copy)</span>
+                <span class="text-sm font-medium text-white group-hover:text-terracotta transition-colors break-all">paule.rochette2004@gmail.com</span>
+              </button>
+
+              <a href="tel:+33612015244" class="p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group">
+                <span class="block text-xs uppercase tracking-wider text-white/50">Phone</span>
+                <span class="text-sm font-medium text-white group-hover:text-terracotta transition-colors">+33 6 12 01 52 44</span>
+              </a>
+
+              <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <span class="block text-xs uppercase tracking-wider text-white/50">Location</span>
+                <span class="text-sm font-medium text-white">Paris, France</span>
+              </div>
+
+              <a href="https://www.linkedin.com/in/paule-rochette-0451332a8" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group flex items-center justify-between">
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-white/50">LinkedIn</span>
+                  <span class="text-sm font-medium text-white group-hover:text-terracotta transition-colors">Paule Rochette</span>
+                </div>
+                <span class="text-white/60 group-hover:text-terracotta">↗</span>
+              </a>
+
+              <a href="https://github.com/Paule-rcht" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group flex items-center justify-between sm:col-span-2">
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-white/50">GitHub Repository</span>
+                  <span class="text-sm font-medium text-white group-hover:text-terracotta transition-colors">github.com/Paule-rcht</span>
+                </div>
+                <span class="text-white/60 group-hover:text-terracotta">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
+    // Smooth Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    // Clipboard Copy Helper
+    function copyText(text, btn) {
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      if (btn) {
+        const label = btn.querySelector('span');
+        if (label) {
+          const orig = label.textContent;
+          label.textContent = 'Copied to clipboard!';
+          setTimeout(() => { label.textContent = orig; }, 2000);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

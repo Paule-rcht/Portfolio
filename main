@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paule Rochette — Engineering & Design Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F6F3EC',
+            creamDark: '#EDE8DC',
+            ink: '#1A1A1A',
+            muted: '#5C5852',
+            terracotta: '#D96B43',
+            terracottaDark: '#B8532F',
+            navyDeep: '#0F2537',
+            navyCard: '#16324A',
+            charcoalFooter: '#14181D'
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"DM Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Fluid Editorial Animations & Custom Scrollbar */
+    body {
+      background-color: #F6F3EC;
+      color: #1A1A1A;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    /* Interactive Photo Slot Styling */
+    .photo-slot {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+
+    .photo-slot:hover {
+      transform: translateY(-3px);
+    }
+
+    .photo-slot .slot-overlay {
+      transition: opacity 0.25s ease, background-color 0.25s ease;
+    }
+
+    .photo-slot.has-image .slot-placeholder {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .photo-slot.has-image .slot-overlay {
+      opacity: 0;
+    }
+
+    .photo-slot.has-image:hover .slot-overlay {
+      opacity: 1;
+      background-color: rgba(20, 24, 29, 0.55);
+    }
+
+    /* Canva Blueprint Mode */
+    body.blueprint-mode section {
+      outline: 1px dashed rgba(217, 107, 67, 0.55);
+      outline-offset: -8px;
+    }
+
+    .canva-badge {
+      display: none;
+    }
+
+    body.blueprint-mode .canva-badge {
+      display: inline-flex;
+    }
+
+    /* Subtle architectural grid texture */
+    .blueprint-grid {
+      background-image: radial-gradient(rgba(26, 26, 26, 0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .blueprint-grid-dark {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-terracotta selection:text-white">
+
+  <!-- Hidden global file input for seamless photo placement -->
+  <input type="file" id="global-photo-input" accept="image/*" class="hidden" />
+
+  <!-- Sticky Minimalist Navigation Bar -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-cream/85 backdrop-blur-md border-b border-ink/5">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="#home" class="font-serif text-lg sm:text-xl font-semibold tracking-tight text-ink flex items-center gap-2">
+        <span>Paule Rochette</span>
+        <span class="hidden md:inline-block text-xs font-sans font-normal uppercase tracking-widest text-muted border-l border-ink/15 pl-2.5">Portfolio</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
+        <a href="#home" class="nav-link hover:text-terracotta transition-colors">Home</a>
+        <a href="#homebites" class="nav-link hover:text-terracotta transition-colors">HomeBites</a>
+        <a href="#captivant" class="nav-link hover:text-terracotta transition-colors">Cap’Tivant</a>
+        <a href="#engineering" class="nav-link hover:text-terracotta transition-colors">Engineering</a>
+        <a href="#design" class="nav-link hover:text-terracotta transition-colors">Interior Design</a>
+        <a href="#contact" class="px-4 py-2 rounded-full bg-ink text-cream text-xs uppercase tracking-wider hover:bg-terracotta transition-colors">Contact</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden p-2.5 rounded-xl text-ink hover:bg-ink/5 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-cream border-b border-ink/10 px-6 py-4 space-y-3 text-sm font-medium">
+      <a href="#home" class="block py-1.5 text-ink hover:text-terracotta">Home</a>
+      <a href="#homebites" class="block py-1.5 text-ink hover:text-terracotta">HomeBites</a>
+      <a href="#captivant" class="block py-1.5 text-ink hover:text-terracotta">Cap’Tivant</a>
+      <a href="#engineering" class="block py-1.5 text-ink hover:text-terracotta">Engineering</a>
+      <a href="#design" class="block py-1.5 text-ink hover:text-terracotta">Interior Design</a>
+      <a href="#contact" class="block py-1.5 text-terracotta font-semibold">About &amp; Contact</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =====================================================================
+         SECTION 1: HERO (Background #F6F3EC, Vertical Arch on the Right)
+    ===================================================================== -->
+    <section id="home" class="relative pt-28 pb-20 sm:pt-36 sm:pb-28 bg-cream">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <!-- Canva Spec Tag -->
+        <div class="canva-badge mb-6 px-3 py-1 rounded-full bg-terracotta/15 text-terracotta text-xs font-mono">
+          CANVA SECTION 1 • Background #F6F3EC • Height ~760px • Fonts: Playfair Display + DM Sans
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          <!-- Left Editorial Column -->
+          <div class="lg:col-span-7 reveal">
+            <p class="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-terracotta mb-4">
+              Engineering &amp; Design Portfolio
+            </p>
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-[64px] leading-[1.08] font-medium text-ink tracking-tight mb-5">
+              Paule <span class="italic font-normal">Rochette</span>
+            </h1>
+            <p class="text-base sm:text-lg font-medium text-ink/90 mb-5">
+              Engineering Graduate — Internship <span class="text-terracotta mx-1.5">•</span> ISEP Engineering School &amp; Master in Business at UC Berkeley
+            </p>
+            <p class="text-base sm:text-lg text-muted leading-relaxed max-w-xl mb-8">
+              At the intersection of engineering, product management, and spatial aesthetics: I design user-centered digital products, autonomous embedded systems, and bespoke architectural spaces.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center gap-4">
+              <a href="#homebites" class="px-6 py-3.5 rounded-full bg-ink text-cream text-sm font-medium hover:bg-terracotta transition-all shadow-sm">
+                Explore my projects ↓
+              </a>
+              <a href="https://www.linkedin.com/in/paule-rochette-0451332a8" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-full border border-ink/20 text-ink text-sm font-medium hover:border-ink hover:bg-ink/5 transition-all inline-flex items-center gap-2">
+                <span>LinkedIn</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <!-- Subtle Key Highlights Strip -->
+            <div class="mt-12 pt-7 border-t border-ink/10 grid grid-cols-3 gap-4 max-w-lg">
+              <div>
+                <p class="font-serif text-xl sm:text-2xl font-semibold text-ink">ISEP &amp; Berkeley</p>
+                <p class="text-xs text-muted mt-0.5">Engineering &amp; Business</p>
+              </div>
+              <div>
+                <p class="font-serif text-xl sm:text-2xl font-semibold text-ink">Product &amp; UX</p>
+                <p class="text-xs text-muted mt-0.5">Full-Stack &amp; Research</p>
+              </div>
+              <div>
+                <p class="font-serif text-xl sm:text-2xl font-semibold text-ink">Hardware &amp; Space</p>
+                <p class="text-xs text-muted mt-0.5">Embedded &amp; Architecture</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Arch Photo Frame -->
+          <div class="lg:col-span-5 flex justify-center lg:justify-end reveal reveal-delay-1">
+            <div class="photo-slot w-full max-w-[360px] h-[470px] sm:h-[510px] rounded-t-full rounded-b-3xl bg-creamDark border border-ink/10 shadow-xl blueprint-grid flex flex-col items-center justify-center text-center p-8" data-slot-label="Cover Photo (Portrait or clean architectural detail)">
+              <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Paule Rochette Cover" />
+              <div class="slot-placeholder flex flex-col items-center">
+                <div class="w-12 h-12 rounded-full bg-cream border border-ink/15 flex items-center justify-center text-terracotta mb-4 shadow-sm">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-terracotta mb-1.5">Canva Arch Frame</span>
+                <p class="font-serif text-lg text-ink mb-2">Cover Photo</p>
+                <p class="text-xs text-muted max-w-[220px] leading-relaxed">
+                  Click here to upload your photo (e.g., professional portrait, refined architectural detail, or geometric sketch).
+                </p>
+              </div>
+              <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                <span class="px-4 py-2 rounded-full bg-cream text-ink text-xs font-semibold shadow">Change photo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 2: HOMEBITES (Seamless #F6F3EC Continuity)
+    ===================================================================== -->
+    <section id="homebites" class="relative py-20 sm:py-28 bg-cream">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <!-- Seamless Editorial Divider Line -->
+        <div class="flex items-center gap-4 mb-12 reveal">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted">01 / Featured Project</span>
+          <div class="h-px bg-ink/10 flex-1"></div>
+          <span class="canva-badge px-3 py-1 rounded-full bg-terracotta/15 text-terracotta text-xs font-mono">
+            CANVA SECTION 2 • Same #F6F3EC background (no page border) • Desktop Mockup on Left
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Left Browser Mockup Frame -->
+          <div class="lg:col-span-7 reveal">
+            <div class="rounded-2xl bg-white border border-ink/10 shadow-xl overflow-hidden">
+              <!-- Browser Top Chrome -->
+              <div class="h-9 bg-creamDark/80 border-b border-ink/10 px-4 flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-terracotta/70"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-400/70"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/70"></span>
+                </div>
+                <div class="px-3 py-0.5 rounded-md bg-white/80 text-[11px] font-mono text-muted truncate max-w-[240px]">
+                  food-from-home-mu.vercel.app
+                </div>
+                <div class="w-8"></div>
+              </div>
+
+              <!-- Interactive Photo Upload Area -->
+              <div class="photo-slot aspect-[16/10] w-full bg-creamDark/40 blueprint-grid flex flex-col items-center justify-center text-center p-8" data-slot-label="HomeBites Screenshot">
+                <img class="slot-img hidden absolute inset-0 w-full h-full object-cover object-top" alt="HomeBites Interface" />
+                <div class="slot-placeholder flex flex-col items-center">
+                  <div class="w-12 h-12 rounded-2xl bg-white border border-ink/10 flex items-center justify-center text-terracotta mb-3 shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <p class="font-serif text-xl text-ink mb-1">HomeBites Screenshot</p>
+                  <p class="text-xs text-muted max-w-sm">
+                    Click to upload a screenshot of your marketplace <span class="font-medium text-ink">food-from-home-mu.vercel.app</span> (meal catalog &amp; filters).
+                  </p>
+                </div>
+                <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                  <span class="px-4 py-2 rounded-full bg-white text-ink text-xs font-semibold shadow">Replace HomeBites screenshot</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Project Story -->
+          <div class="lg:col-span-5 reveal reveal-delay-1">
+            <span class="inline-block px-3.5 py-1 rounded-full bg-terracotta/12 text-terracotta text-xs font-semibold uppercase tracking-wider mb-4">
+              Product Management &amp; Full-Stack UX
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium text-ink leading-tight mb-4">
+              HomeBites — <span class="italic font-normal">Food From Home</span>
+            </h2>
+            <p class="text-muted text-base leading-relaxed mb-5">
+              End-to-end product design and development of a peer-to-peer meal marketplace connecting local home cooks with guests seeking authentic homemade dishes.
+            </p>
+            <ul class="space-y-2.5 text-sm text-ink/85 mb-6">
+              <li class="flex items-start gap-2.5">
+                <span class="text-terracotta font-bold mt-0.5">•</span>
+                <span><strong>User Research &amp; Testing:</strong> two-sided interviews and usability testing (hosts and guests) to validate trust signals and booking flows.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-terracotta font-bold mt-0.5">•</span>
+                <span><strong>Architecture &amp; Database:</strong> dietary filters, host menu publishing, structured SQL persistence, and continuous cloud deployment.</span>
+              </li>
+            </ul>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2 mb-7">
+              <span class="px-3 py-1 rounded-full bg-creamDark text-ink/80 text-xs font-medium">Product Management</span>
+              <span class="px-3 py-1 rounded-full bg-creamDark text-ink/80 text-xs font-medium">User Research</span>
+              <span class="px-3 py-1 rounded-full bg-creamDark text-ink/80 text-xs font-medium">Full-Stack Web</span>
+              <span class="px-3 py-1 rounded-full bg-creamDark text-ink/80 text-xs font-medium">Database Design</span>
+            </div>
+
+            <!-- Live Link Button -->
+            <a href="https://food-from-home-mu.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-terracotta text-white text-sm font-medium hover:bg-terracottaDark transition-all shadow-sm">
+              <span>Test Live Application</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 3: CAP'TIVANT (Deep Navy Contrast #0F2537, 3 Cascading Screens)
+    ===================================================================== -->
+    <section id="captivant" class="relative py-24 sm:py-32 bg-navyDeep text-white overflow-hidden">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="flex items-center gap-4 mb-12 reveal">
+          <span class="text-xs font-mono uppercase tracking-widest text-white/60">02 / Digital Product &amp; Nautical UX</span>
+          <div class="h-px bg-white/15 flex-1"></div>
+          <span class="canva-badge px-3 py-1 rounded-full bg-white/15 text-white text-xs font-mono">
+            CANVA SECTION 3 • Contrasting #0F2537 background • 3 overlapping screens on Right
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Left Narrative Column -->
+          <div class="lg:col-span-5 reveal">
+            <span class="inline-block px-3.5 py-1 rounded-full bg-white/10 text-terracotta text-xs font-semibold uppercase tracking-wider mb-4">
+              Digital Product &amp; Nautical UX Design
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium text-white leading-tight mb-4">
+              Cap’Tivant — <span class="italic font-normal text-white/90">Luxury Boat Rental Platform</span>
+            </h2>
+            <p class="text-white/75 text-base leading-relaxed mb-6">
+              Responsive, bilingual web interface dedicated to yacht and sailboat rentals, engineered to deliver an inclusive and immersive user journey.
+            </p>
+
+            <ul class="space-y-3 text-sm text-white/85 mb-6">
+              <li class="flex items-start gap-2.5">
+                <span class="text-terracotta font-bold mt-0.5">•</span>
+                <span><strong>Bicultural UX &amp; Accessibility:</strong> instant EN/FR language toggle, dedicated high-contrast visual mode, and dynamic voice guidance for visually impaired users.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-terracotta font-bold mt-0.5">•</span>
+                <span><strong>Interactive Features:</strong> marina mapping (Leaflet API), hover-triggered Web Audio voice synthesis, client authentication, and booking workflows.</span>
+              </li>
+            </ul>
+
+            <!-- Tech Stack Pills -->
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-medium">HTML5 / CSS3</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-medium">JS ES6+</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-medium">Web Audio API</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-medium">Leaflet API</span>
+            </div>
+
+            <a href="https://paule-rcht.github.io/CapTivant-Project/PageAccueil.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white text-navyDeep text-sm font-semibold hover:bg-terracotta hover:text-white transition-all shadow-md">
+              <span>Explore Platform</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <!-- Right Cascading 3 Screens Composition -->
+          <div class="lg:col-span-7 reveal reveal-delay-1">
+            <div class="relative min-h-[420px] sm:min-h-[470px] flex flex-col justify-center">
+              <!-- Main Top-Right Screen -->
+              <div class="photo-slot w-full sm:w-[86%] sm:ml-auto aspect-[16/10] rounded-2xl bg-navyCard border border-white/15 shadow-2xl blueprint-grid-dark flex flex-col items-center justify-center text-center p-6" data-slot-label="Cap'Tivant — Home Screen">
+                <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Cap'Tivant Home" />
+                <div class="slot-placeholder flex flex-col items-center">
+                  <span class="text-[11px] font-mono uppercase tracking-widest text-terracotta mb-1">Primary Screen</span>
+                  <p class="font-serif text-lg text-white">Cap’Tivant Homepage</p>
+                  <p class="text-xs text-white/60 mt-1">Click to upload your main screenshot</p>
+                </div>
+                <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                  <span class="px-4 py-2 rounded-full bg-white text-navyDeep text-xs font-semibold shadow">Change image</span>
+                </div>
+              </div>
+
+              <!-- Two Overlapping Secondary Screens at Bottom -->
+              <div class="grid grid-cols-2 gap-4 sm:gap-6 mt-4 sm:-mt-16 sm:w-[88%] relative z-10">
+                <div class="photo-slot aspect-[16/10] rounded-xl bg-navyCard border border-white/20 shadow-2xl blueprint-grid-dark flex flex-col items-center justify-center text-center p-4" data-slot-label="Cap'Tivant — Navigation Menu">
+                  <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Cap'Tivant Menu" />
+                  <div class="slot-placeholder flex flex-col items-center">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-terracotta">Screen 2</span>
+                    <p class="font-serif text-sm text-white mt-0.5">Menu &amp; Navigation</p>
+                    <p class="text-[11px] text-white/55 mt-0.5">Upload visual</p>
+                  </div>
+                  <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                    <span class="px-3 py-1.5 rounded-full bg-white text-navyDeep text-[11px] font-semibold">Change</span>
+                  </div>
+                </div>
+
+                <div class="photo-slot aspect-[16/10] rounded-xl bg-navyCard border border-white/20 shadow-2xl blueprint-grid-dark flex flex-col items-center justify-center text-center p-4" data-slot-label="Cap'Tivant — Boat Listing & Leaflet Map">
+                  <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Cap'Tivant Boat Listing" />
+                  <div class="slot-placeholder flex flex-col items-center">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-terracotta">Screen 3</span>
+                    <p class="font-serif text-sm text-white mt-0.5">Yacht Details &amp; Map</p>
+                    <p class="text-[11px] text-white/55 mt-0.5">Upload visual</p>
+                  </div>
+                  <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                    <span class="px-3 py-1.5 rounded-full bg-white text-navyDeep text-[11px] font-semibold">Change</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 4: ENGINEERING & EMBEDDED SYSTEMS (2 Side-by-Side Cards on #F6F3EC)
+    ===================================================================== -->
+    <section id="engineering" class="relative py-24 sm:py-28 bg-cream">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="flex items-center gap-4 mb-6 reveal">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted">03 / Hardware, Mechanics &amp; Embedded</span>
+          <div class="h-px bg-ink/10 flex-1"></div>
+          <span class="canva-badge px-3 py-1 rounded-full bg-terracotta/15 text-terracotta text-xs font-mono">
+            CANVA SECTION 4 • 2-Column Side-by-Side Grid (combines both hardware projects)
+          </span>
+        </div>
+
+        <div class="max-w-2xl mb-12 reveal">
+          <h2 class="font-serif text-3xl sm:text-4xl font-medium text-ink mb-3">
+            Engineering &amp; <span class="italic font-normal">Embedded Systems</span>
+          </h2>
+          <p class="text-muted text-base">
+            From handcrafted mechanical prototyping to real-time C/C++ firmware and custom printed circuit boards.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Card 1: Boat Modeling & Automated Systems -->
+          <article class="rounded-3xl bg-white border border-ink/8 p-6 sm:p-8 shadow-sm flex flex-col justify-between reveal">
+            <div>
+              <!-- Dual Photo Layout -->
+              <div class="grid grid-cols-12 gap-3 mb-7">
+                <div class="photo-slot col-span-8 aspect-[4/3] rounded-2xl bg-creamDark blueprint-grid flex flex-col items-center justify-center text-center p-4" data-slot-label="Handcrafted Oak Sailboat Model">
+                  <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Handcrafted oak sailboat model" />
+                  <div class="slot-placeholder">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-terracotta">Photo 1</span>
+                    <p class="font-serif text-sm text-ink mt-0.5">Oak Hull Sailboat</p>
+                    <p class="text-[11px] text-muted mt-0.5">Upload full view</p>
+                  </div>
+                  <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                    <span class="px-3 py-1.5 rounded-full bg-white text-ink text-xs font-semibold">Change</span>
+                  </div>
+                </div>
+
+                <div class="photo-slot col-span-4 aspect-[4/3] sm:aspect-auto rounded-2xl bg-creamDark blueprint-grid flex flex-col items-center justify-center text-center p-3" data-slot-label="Arduino Capstan & Stepper Motors Zoom">
+                  <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Arduino stepper motors" />
+                  <div class="slot-placeholder">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-terracotta">Close-Up</span>
+                    <p class="font-serif text-xs text-ink mt-0.5">Arduino Capstan</p>
+                    <p class="text-[10px] text-muted mt-0.5">Upload detail</p>
+                  </div>
+                  <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                    <span class="px-2.5 py-1 rounded-full bg-white text-ink text-[11px] font-semibold">Change</span>
+                  </div>
+                </div>
+              </div>
+
+              <span class="text-xs font-semibold uppercase tracking-widest text-terracotta">Craftsmanship &amp; Engineering</span>
+              <h3 class="font-serif text-2xl font-medium text-ink mt-1.5 mb-3">
+                Boat Modeling &amp; Automated Systems
+              </h3>
+              <ul class="space-y-2 text-sm text-muted leading-relaxed mb-6">
+                <li><strong class="text-ink">Naval Craftsmanship:</strong> handcrafted oak hull built from original architectural blueprints with hand-sewn sails.</li>
+                <li><strong class="text-ink">Embedded Automation:</strong> dual-stepper motor capstan system driven by Arduino and ULN2003 controllers automating sail-hoisting and LED navigation light sequences.</li>
+              </ul>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-ink/8">
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Arduino</span>
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Stepper Motors &amp; ULN2003</span>
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Naval Woodworking</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Autonomous Sound-Detecting Mobile Robot -->
+          <article class="rounded-3xl bg-white border border-ink/8 p-6 sm:p-8 shadow-sm flex flex-col justify-between reveal reveal-delay-1">
+            <div>
+              <!-- Dual Photo Layout -->
+              <div class="grid grid-cols-12 gap-3 mb-7">
+                <div class="photo-slot col-span-7 aspect-[4/3] rounded-2xl bg-creamDark blueprint-grid flex flex-col items-center justify-center text-center p-4" data-slot-label="Mobile Robot & Custom PCB">
+                  <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Mobile robot and custom PCB" />
+                  <div class="slot-placeholder">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-terracotta">Photo 1</span>
+                    <p class="font-serif text-sm text-ink mt-0.5">Robot &amp; Custom PCB</p>
+                    <p class="text-[11px] text-muted mt-0.5">Upload robot photo</p>
+                  </div>
+                  <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                    <span class="px-3 py-1.5 rounded-full bg-white text-ink text-xs font-semibold">Change</span>
+                  </div>
+                </div>
+
+                <div class="photo-slot col-span-5 aspect-[4/3] sm:aspect-auto rounded-2xl bg-creamDark blueprint-grid flex flex-col items-center justify-center text-center p-3" data-slot-label="Bluetooth Telemetry Smartphone App">
+                  <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Smartphone Bluetooth telemetry" />
+                  <div class="slot-placeholder">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-terracotta">Photo 2</span>
+                    <p class="font-serif text-xs text-ink mt-0.5">Bluetooth Telemetry</p>
+                    <p class="text-[10px] text-muted mt-0.5">Upload app view</p>
+                  </div>
+                  <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                    <span class="px-2.5 py-1 rounded-full bg-white text-ink text-[11px] font-semibold">Change</span>
+                  </div>
+                </div>
+              </div>
+
+              <span class="text-xs font-semibold uppercase tracking-widest text-terracotta">Embedded Systems &amp; Signal Processing</span>
+              <h3 class="font-serif text-2xl font-medium text-ink mt-1.5 mb-3">
+                Autonomous Sound-Detecting Mobile Robot
+              </h3>
+              <ul class="space-y-2 text-sm text-muted leading-relaxed mb-6">
+                <li><strong class="text-ink">Hardware &amp; Custom PCB:</strong> compact mobile robot featuring a custom-designed PCB, acoustic sensors, and motor drivers.</li>
+                <li><strong class="text-ink">Acoustic Tracking &amp; Safety:</strong> C/C++ firmware on Tiva C Series for real-time frequency filtering, directional sound tracking, automatic obstacle stop, and Bluetooth telemetry.</li>
+              </ul>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-ink/8">
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">C / C++</span>
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Tiva C Series</span>
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Signal Processing</span>
+              <span class="px-3 py-1 rounded-full bg-cream text-ink/80 text-xs font-medium">Bluetooth</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 5: INTERIOR DESIGN (Asymmetric 4-Frame Gallery on #F6F3EC)
+    ===================================================================== -->
+    <section id="design" class="relative py-20 sm:py-28 bg-cream">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="flex items-center gap-4 mb-10 reveal">
+          <span class="text-xs font-mono uppercase tracking-widest text-muted">04 / Architecture &amp; Spatial Aesthetics</span>
+          <div class="h-px bg-ink/10 flex-1"></div>
+          <span class="canva-badge px-3 py-1 rounded-full bg-terracotta/15 text-terracotta text-xs font-mono">
+            CANVA SECTION 5 • 4-Photo Editorial Gallery (instead of 9 uniform thumbnails)
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 reveal">
+          <div class="lg:col-span-6">
+            <span class="text-xs font-semibold uppercase tracking-widest text-terracotta">Spatial Layout &amp; Project Coordination</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium text-ink mt-2">
+              Luxury Interior Design — <span class="italic font-normal">Paris Île-de-France</span>
+            </h2>
+          </div>
+          <div class="lg:col-span-6">
+            <p class="text-muted text-sm sm:text-base leading-relaxed">
+              Moodboard curation, spatial planning, material specification, and photoshoot staging for high-end residential interiors. Coordinated suppliers, bespoke joinery detailing, client presentations, and financial tracking.
+            </p>
+          </div>
+        </div>
+
+        <!-- Asymmetric 4-Photo Editorial Gallery -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 reveal reveal-delay-1">
+          <!-- Large Left Portrait Frame -->
+          <div class="photo-slot md:col-span-5 h-[380px] md:h-[480px] rounded-3xl bg-creamDark border border-ink/8 blueprint-grid flex flex-col items-center justify-center text-center p-6" data-slot-label="Interior Design — Main View (Living room or master suite)">
+            <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Parisian Interior 1" />
+            <div class="slot-placeholder">
+              <span class="text-xs font-mono uppercase tracking-widest text-terracotta">Featured Photo</span>
+              <p class="font-serif text-lg text-ink mt-1">Living Room or Master Suite</p>
+              <p class="text-xs text-muted mt-1 max-w-[200px]">Click to upload your signature vertical shot</p>
+            </div>
+            <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+              <span class="px-4 py-2 rounded-full bg-white text-ink text-xs font-semibold shadow">Change photo</span>
+            </div>
+          </div>
+
+          <!-- Right 3-Frame Mosaic -->
+          <div class="md:col-span-7 flex flex-col gap-5">
+            <!-- Top Wide Frame -->
+            <div class="photo-slot h-[230px] rounded-3xl bg-creamDark border border-ink/8 blueprint-grid flex flex-col items-center justify-center text-center p-6" data-slot-label="Interior Design — Kitchen or Dining Space">
+              <img class="slot-img hidden absolute inset-0 w-full h-full object-cover" alt="Parisian Interior 2" />
+              <div class="slot-placeholder">
+                <span class="text-xs font-mono uppercase tracking-widest text-terracotta">Photo 2 • Landscape</span>
+                <p class="font-serif text-base text-ink mt-0.5">Custom Kitchen or Dining Space</p>
+              </div>
+              <div class="slot-overlay absolute inset-0 flex items-center justify-center opacity-0">
+                <span class="px-4 py-2 rounded-full bg-white text-ink text-xs font-semibold shadow">Change photo</span>
+              </div>
+            </div>
+
+            <!-- Bottom Two Frames -->
+            <div class="grid grid-cols-2 gap-5 flex-1">
+              <div class="photo-slot h-[230px] rounded-3xl bg-creamDark border border-ink/8 blueprint-grid flex flex-col items-center justify-center text-center p-4" data-slot-label="Interior Design

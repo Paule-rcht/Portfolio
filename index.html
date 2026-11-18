@@ -368,15 +368,17 @@
 
           <div class="lg:col-span-7 reveal reveal-delay-1">
             <div class="relative min-h-[420px] sm:min-h-[470px] flex flex-col justify-center">
+              <!-- Écran principal décalé à droite -->
               <div class="media-frame w-full sm:w-[86%] sm:ml-auto aspect-[16/10] rounded-2xl bg-navyCard border border-white/15 shadow-2xl">
                 <img src="CapTivant-Home.png" alt="Cap'Tivant Homepage" />
               </div>
-
-              <div class="grid grid-cols-2 gap-4 sm:gap-6 mt-4 sm:-mt-16 sm:w-full relative z-10">
+            
+              <!-- Deux écrans secondaires plus grands et décalés vers la gauche -->
+              <div class="grid grid-cols-2 gap-4 sm:gap-5 mt-4 sm:-mt-14 sm:w-[92%] sm:-ml-4 relative z-10">
                 <div class="media-frame aspect-[16/10] rounded-xl bg-navyCard border border-white/20 shadow-2xl">
                   <img src="CapTivant-Menu.png" alt="Cap'Tivant Menu" />
                 </div>
-
+            
                 <div class="media-frame aspect-[16/10] rounded-xl bg-navyCard border border-white/20 shadow-2xl">
                   <img src="CapTivant.png" alt="Cap'Tivant Boat Listing and Map" />
                 </div>
@@ -412,10 +414,10 @@
             <div>
               <div class="grid grid-cols-12 gap-3 mb-7">
                 <div class="media-frame col-span-7 h-56 rounded-2xl bg-creamDark">
-                  <video src="Bateau.mp4" autoplay loop muted playsinline controls></video>
+                  <video src="Bateau.mp4" class="!object-right" autoplay loop muted playsinline controls></video>
                 </div>
                 <div class="media-frame col-span-5 h-56 rounded-2xl bg-creamDark">
-                  <video src="Moteur.mov" autoplay loop muted playsinline controls></video>
+                  <video src="Moteur.mov" class="scale-125 object-center" autoplay loop muted playsinline controls></video>
                 </div>
               </div>
 
@@ -550,7 +552,7 @@
           <!-- Right Geometric Sketch Accent -->
           <div class="lg:col-span-4 flex justify-center lg:justify-end reveal reveal-delay-1">
             <div class="media-frame w-60 h-72 rounded-t-full rounded-b-2xl bg-cream border border-white/15 shadow-2xl overflow-hidden">
-              <img src="Dessin.jpg" alt="Architectural Geometric Line Study" class="!object-cover scale-125 object-center" />
+              <img src="Dessin.jpg" alt="Architectural Geometric Line Study" class="!object-cover scale-115 object-center" />
             </div>
           </div>
         </div>
